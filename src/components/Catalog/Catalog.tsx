@@ -21,7 +21,7 @@ function Catalog() {
                         className='search-block__icon'
                     />
                     <input
-                        name='search'
+                        placeholder='Поиск...'
                         type='search'
                         className='search-block__input'
                     />

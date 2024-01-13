@@ -10,6 +10,12 @@
     padding: 20px 30px 34px;
 }
 
+.product:hover {
+    border: 1px solid #F8F8F8;
+    box-shadow: 0px 14px 30px 0px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+}
+
 .product__like-icon {
     position: absolute;
     left: 30px;

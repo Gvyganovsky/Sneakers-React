@@ -1,7 +1,7 @@
 import './Hero.scss';
 import Company from '../../assets/icons/company.svg'
 import hero from '../../assets/img/hero.png'
-import arrow from '../../assets/icons/arrow.svg'
+import arrowCircle from '../../assets/icons/arrow-circle.svg'
 
 function Hero() {
     return (
@@ -20,7 +20,7 @@ function Hero() {
                                 Stan Smith
                             </span>, Forever!
                         </h2>
-                        <button type='button' className='hero-content__button button'>
+                        <button type='button' className='hero-content__btn btn'>
                             Купить
                         </button>
                     </div>
@@ -32,7 +32,7 @@ function Hero() {
                         className='hero-content__img'
                     />
                     <img
-                        src={arrow}
+                        src={arrowCircle}
                         alt="arrow"
                         width={60}
                         height={60}
