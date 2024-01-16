@@ -7,9 +7,9 @@ function Drawer() {
     return (
         <section className='overlay'>
             <div className='drawer'>
-                <h2 className='drawer__title'>Корзина</h2>
-                <div className='cards'>
-                    <div className="cart-item">
+                <h2 className='drawer__title Сross'>Корзина</h2>
+                <ul className='cards list'>
+                    <li className='cart-item'>
                         <img
                             src={Sneaker1}
                             alt='Sneaker'
@@ -30,9 +30,8 @@ function Drawer() {
                             height={32}
                             className='cart-item__cross'
                         />
-                    </div>
-
-                    <div className="cart-item">
+                    </li>
+                    <li className='cart-item'>
                         <img
                             src={Sneaker1}
                             alt='Sneaker'
@@ -53,8 +52,8 @@ function Drawer() {
                             height={32}
                             className='cart-item__cross'
                         />
-                    </div>
-                </div>
+                    </li>
+                </ul>
                 <ul className='drawer__price-block price-block'>
                     <li className='price-block__item'>
                         <p className='price-block__text'>
@@ -74,7 +73,7 @@ function Drawer() {
                             1074 руб.
                         </p>
                     </li>
-                    <li>
+                    <li className='price-block__item'>
                         <button className='price-block__btn btn'>
                             Оформить заказ
                         </button>

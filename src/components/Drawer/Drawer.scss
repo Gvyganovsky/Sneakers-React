@@ -18,7 +18,7 @@
     font-family: Inter;
     background-color: #fff;
 
-    padding: 30px;
+    padding: 20px;
 
     display: flex;
     flex-direction: column;
@@ -27,10 +27,19 @@
 .drawer__title {
     font-size: 24px;
     font-weight: 700;
+    min-height: 32px;
+}
+
+.cross {
+    background-image: url(../../assets/icons/cross.svg);
+    background-repeat: no-repeat;
+    background-position: right;
+    cursor: pointer;
 }
 
 .cards {
     flex: 1;
+    overflow: auto;
 }
 
 .cart-item {
