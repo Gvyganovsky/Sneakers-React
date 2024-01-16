@@ -1,26 +1,26 @@
-import './Hero.scss';
+import styles from './Hero.module.scss'
 import Company from '../../assets/icons/company.svg'
 import hero from '../../assets/img/hero.png'
 import arrowCircle from '../../assets/icons/arrow-circle.svg'
 
 function Hero() {
     return (
-        <section className='hero'>
-            <div className="hero__container container">
+        <section className={styles.hero}>
+            <div className={styles.hero__container}>
                 <img
                     src={Company}
                     alt="company"
                     width={99}
                     height={40}
                 />
-                <div className='hero__content hero-content'>
-                    <div className="hero-content__text-block">
-                        <h2 className='hero-content__title'>
-                            <span className='hero-content__title hero-content__title_green'>
+                <div className={styles.hero__content}>
+                    <div className={styles.hero__content__textBlock}>
+                        <h2 className={styles.hero__title}>
+                            <span className={styles.hero__title_green}>
                                 Stan Smith
                             </span>, Forever!
                         </h2>
-                        <button type='button' className='hero-content__btn btn'>
+                        <button type='button' className={styles.hero__btn}>
                             Купить
                         </button>
                     </div>
@@ -29,14 +29,14 @@ function Hero() {
                         alt="Stan Smith, Forever!"
                         width={642}
                         height={300}
-                        className='hero-content__img'
+                        className={styles.hero__img}
                     />
                     <img
                         src={arrowCircle}
                         alt="arrow"
                         width={60}
                         height={60}
-                        className='hero-content__arrow'
+                        className={styles.hero__arrow}
                     />
                 </div>
             </div>

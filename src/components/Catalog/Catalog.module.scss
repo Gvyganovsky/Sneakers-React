@@ -2,13 +2,19 @@
     margin-top: 39px;
 }
 
+.catalog__container {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+
 .catalog__title {
     font-size: 32px;
     font-weight: 700;
     display: inline-block;
 }
 
-.search-block {
+.search__block {
     display: flex;
     align-items: center;
     float: right;
@@ -21,11 +27,11 @@
     border: 1px solid #F3F3F3;
 }
 
-.search-block__icon {
+.search__icon {
     margin-right: 14px;
 }
 
-.search-block__input {
+.search__input {
     border: none;
     outline: none;
     font-family: unset;

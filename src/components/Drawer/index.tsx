@@ -1,26 +1,26 @@
-import './Drawer.scss';
+import styles from './Drawer.module.scss';
 import Сross from '../../assets/icons/cross.svg';
 import Sneaker1 from '../../assets/img/sneaker1.jpg';
 
 
 function Drawer() {
     return (
-        <section className='overlay'>
-            <div className='drawer'>
-                <h2 className='drawer__title Сross'>Корзина</h2>
-                <ul className='cards list'>
-                    <li className='cart-item'>
+        <section className={styles.overlay}>
+            <div className={styles.drawer}>
+                <h2 className={`${styles.drawer__title} ${styles.cross}`}>Корзина</h2>
+                <ul className={styles.cards__list}>
+                    <li className={styles.cart__item}>
                         <img
                             src={Sneaker1}
                             alt='Sneaker'
                             width={70}
                             height={70}
-                            className='cart-item__img'
+                            className={styles.cart__img}
                         />
-                        <h3 className='cart-item__title'>
+                        <h3 className={styles.cart__title}>
                             Мужские Кроссовки Nike Air Max 270
                         </h3>
-                        <p className='cart-item__price'>
+                        <p className={styles.cart__price}>
                             12 999 руб.
                         </p>
                         <img
@@ -28,21 +28,21 @@ function Drawer() {
                             alt='Сross'
                             width={32}
                             height={32}
-                            className='cart-item__cross'
+                            className={styles.cart__cross}
                         />
                     </li>
-                    <li className='cart-item'>
+                    <li className={styles.cart__item}>
                         <img
                             src={Sneaker1}
                             alt='Sneaker'
                             width={70}
                             height={70}
-                            className='cart-item__img'
+                            className={styles.cart__img}
                         />
-                        <h3 className='cart-item__title'>
+                        <h3 className={styles.cart__title}>
                             Мужские Кроссовки Nike Air Max 270
                         </h3>
-                        <p className='cart-item__price'>
+                        <p className={styles.cart__price}>
                             12 999 руб.
                         </p>
                         <img
@@ -50,31 +50,32 @@ function Drawer() {
                             alt='Сross'
                             width={32}
                             height={32}
-                            className='cart-item__cross'
+                            className={styles.cart__cross}
                         />
                     </li>
                 </ul>
-                <ul className='drawer__price-block price-block'>
-                    <li className='price-block__item'>
-                        <p className='price-block__text'>
+
+                <ul className={styles.drawer__priceBlock}>
+                    <li className={styles.price__item}>
+                        <p className={styles.price__text}>
                             Итого:
                         </p>
-                        <div className='price-block__gray-line'></div>
-                        <p className='price-block__price'>
+                        <div className={styles.gray__line}></div>
+                        <p className={styles.price__textPrice}>
                             21 498 руб.
                         </p>
                     </li>
-                    <li className='price-block__item'>
-                        <p className='price-block__text'>
+                    <li className={styles.price__item}>
+                        <p className={styles.price__text}>
                             Налог 5%:
                         </p>
-                        <div className='price-block__gray-line'></div>
-                        <p className='price-block__price'>
+                        <div className={styles.gray__line}></div>
+                        <p className={styles.price__textPrice}>
                             1074 руб.
                         </p>
                     </li>
-                    <li className='price-block__item'>
-                        <button className='price-block__btn btn'>
+                    <li className={styles.price__item}>
+                        <button className={styles.price__btn}>
                             Оформить заказ
                         </button>
                     </li>

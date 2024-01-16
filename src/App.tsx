@@ -1,8 +1,8 @@
 import './App.scss';
-import Catalog from './components/Catalog/Catalog';
-import Drawer from './components/Drawer/Drawer';
-import Header from './components/Header/Header';
-import Hero from './components/Hero/Hero';
+import Catalog from './components/Catalog';
+import Drawer from './components/Drawer';
+import Header from './components/Header';
+import Hero from './components/Hero';
 
 function App() {
   return (

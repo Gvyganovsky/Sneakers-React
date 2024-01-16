@@ -1,12 +1,15 @@
 .header__container {
     max-width: 995px;
 
+    margin: 0 auto;
+    padding: 0 10px;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.logo-block {
+.header__logoBlock {
     width: 245px;
     display: inline-block;
 }
@@ -49,7 +52,7 @@
     margin-right: 10px;
 }
 
-.header-item__text {
+.header__iconText {
     color: #5C5C5C;
     font-size: 14px;
     font-weight: 400;

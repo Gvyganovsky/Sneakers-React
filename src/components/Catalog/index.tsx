@@ -1,5 +1,5 @@
-import './Catalog.scss';
-import Product from '../Product/Product';
+import styles from './Catalog.module.scss';
+import Product from '../Product';
 import Search from '../../assets/icons/search.svg';
 
 import sneaker1 from '../../assets/img/sneaker1.jpg'
@@ -16,26 +16,26 @@ const products = [
 
 function Catalog() {
     return (
-        <section className='catalog'>
-            <div className='catalog__container container'>
-                <h2 className='catalog__title'>
+        <section className={styles.catalog}>
+            <div className={styles.catalog__container}>
+                <h2 className={styles.catalog__title}>
                     Все кроссовки
                 </h2>
-                <form action="" className="search-block">
+                <form action="" className={styles.search__block}>
                     <img
                         src={Search}
                         alt='Search'
                         width={15}
                         height={15}
-                        className='search-block__icon'
+                        className={styles.search__icon}
                     />
                     <input
                         placeholder='Поиск...'
                         type='search'
-                        className='search-block__input'
+                        className={styles.search__input}
                     />
                 </form>
-                <div className='catalog__content'>
+                <div className={styles.catalog__content}>
                     {products.map((product) => (
                         <Product
                             img={product.img}

@@ -6,6 +6,8 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 1;
+
+    display: none;
 }
 
 .drawer {
@@ -37,12 +39,12 @@
     cursor: pointer;
 }
 
-.cards {
+.cards__list {
     flex: 1;
     overflow: auto;
 }
 
-.cart-item {
+.cart__item {
     width: 325px;
     height: 120px;
     position: relative;
@@ -56,65 +58,63 @@
     padding: 20px;
 }
 
-.cart-item:first-of-type {
+.cart__item:first-of-type {
     margin-top: 30px;
 }
 
-.cart-item__img {
+.cart__img {
     float: left;
     margin-right: 20px;
 }
 
-.cart-item__title {
+.cart__title {
     margin-top: 10px;
     font-size: 14px;
     font-weight: 400;
 }
 
-.cart-item__price {
+.cart__price {
     font-size: 14px;
     font-weight: 700;
     margin-top: 8px;
 }
 
-.cart-item__cross {
+.cart__cross {
     position: absolute;
     bottom: 20px;
     right: 20px;
     cursor: pointer;
 }
 
-.price-block {}
-
-.price-block__item {
+.price__item {
     display: flex;
     align-items: end;
     justify-content: center;
     margin-top: 19px;
 }
 
-.price-block__text {
+.price__text {
     font-size: 16px;
     font-weight: 400;
 }
 
-.price-block__gray-line {
+.gray__line {
     width: 155px;
     height: 1px;
     border: 1px dashed #DFDFDF;
     margin: 0 auto;
 }
 
-.price-block__gray-line:first-of-type {
+.gray__line:first-of-type {
     width: 167px;
 }
 
-.price-block__price {
+.styles.price__textPrice {
     font-size: 16px;
     font-weight: 600;
 }
 
-.price-block__btn {
+.price__btn {
     width: 325px;
     height: 55px;
     margin-top: 24px;
@@ -122,4 +122,27 @@
     background-image: url(../../assets/icons/arrow.svg);
     background-position: 285px;
     background-repeat: no-repeat;
+
+    color: #FFF;
+    text-align: center;
+    font-family: unset;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+
+    border-radius: 110px;
+    background-color: #A5D364;
+    border: none;
+
+    cursor: pointer;
+    padding: 15px 0;
+}
+
+.price__btn:hover {
+    background-color: #8db654;
+}
+
+
+.price__btn:active {
+    background-color: #759744;
 }
