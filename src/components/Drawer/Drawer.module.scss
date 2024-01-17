@@ -31,7 +31,7 @@
 }
 
 .cross {
-    background-image: url(../../assets/icons/cross.svg);
+    background-image: url('./cross.svg');
     background-repeat: no-repeat;
     background-position: right;
     cursor: pointer;
@@ -117,7 +117,7 @@
     height: 55px;
     margin-top: 24px;
 
-    background-image: url(../../assets/icons/arrow.svg);
+    background-image: url('./arrow.svg');
     background-position: 285px;
     background-repeat: no-repeat;
 
