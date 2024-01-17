@@ -53,6 +53,15 @@
     margin-top: 30px;
 }
 
+.hero__btn:hover {
+    background-color: #8db654;
+}
+
+
+.hero__btn:active {
+    background-color: #759744;
+}
+
 .hero__arrow {
     position: absolute;
     left: 99%;
