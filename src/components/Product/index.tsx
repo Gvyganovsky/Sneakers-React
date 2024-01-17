@@ -41,7 +41,7 @@ function Product(props: any) {
                     Цена:
                 </p>
                 <p className={styles.product__price}>
-                    {props.price}
+                    {props.price} руб.
                 </p>
             </div>
         </section>
