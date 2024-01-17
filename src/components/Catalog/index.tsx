@@ -1,14 +1,22 @@
 import styles from './Catalog.module.scss';
 import Product from '../Product';
+import React from 'react';
 
-const products = [
-    { img: '/assets/img/sneaker1.jpg', title: 'Мужские Кроссовки Nike Blazer Mid Suede', price: 12999 },
-    { img: '/assets/img/sneaker2.jpg', title: 'Мужские Кроссовки Nike Air Max 270', price: 12999 },
-    { img: '/assets/img/sneaker3.jpg', title: 'Мужские Кроссовки Nike Blazer Mid Suede', price: 8499 },
-    { img: '/assets/img/sneaker4.jpg', title: 'Кроссовки Puma X Aka Boku Future Rider', price: 8999 },
-];
+function Catalog({ cartProducts, setCartProducts }: any) {
+    const [products, setProducts] = React.useState<any[]>([])
+    React.useEffect(() => {
+        fetch('https://65a7c5a394c2c5762da7817d.mockapi.io/products').then((res) => {
+            return res.json();
+        })
+            .then((json) => {
+                setProducts(json);
+            })
+    }, []);
 
-function Catalog() {
+    const onAddToCart = (obj: any) => {
+        setCartProducts([...cartProducts, obj]);
+    };
+
     return (
         <section className={styles.catalog}>
             <div className={styles.catalog__container}>
@@ -35,6 +43,7 @@ function Catalog() {
                             img={product.img}
                             title={product.title}
                             price={product.price}
+                            onAddToCart={(obj: any) => onAddToCart(obj)}
                         />
                     ))}
                 </div>

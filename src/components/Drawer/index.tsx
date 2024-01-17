@@ -1,55 +1,19 @@
 import styles from './Drawer.module.scss';
+import CartItem from '../CartItem';
 
-function Drawer(props: any) {
+function Drawer({ onClickCross, products = [] }: any) {
     return (
         <section className={styles.overlay}>
             <div className={styles.drawer}>
-                <h2 className={`${styles.drawer__title} ${styles.cross}`} onClick={props.onClickCross}>Корзина</h2>
+                <h2 className={`${styles.drawer__title} ${styles.cross}`} onClick={onClickCross}>Корзина</h2>
                 <ul className={styles.cards__list}>
-                    <li className={styles.cart__item}>
-                        <img
-                            src='/assets/img/sneaker1.jpg'
-                            alt='Sneaker'
-                            width={70}
-                            height={70}
-                            className={styles.cart__img}
+                    {products.map((item: { img: any; title: any; price: any; }) => (
+                        <CartItem
+                            img={item.img}
+                            title={item.title}
+                            price={item.price}
                         />
-                        <h3 className={styles.cart__title}>
-                            Мужские Кроссовки Nike Air Max 270
-                        </h3>
-                        <p className={styles.cart__price}>
-                            12 999 руб.
-                        </p>
-                        <img
-                            src='/assets/icons/cross.svg'
-                            alt='Сross'
-                            width={32}
-                            height={32}
-                            className={styles.cart__cross}
-                        />
-                    </li>
-                    <li className={styles.cart__item}>
-                        <img
-                            src='/assets/img/sneaker1.jpg'
-                            alt='Sneaker'
-                            width={70}
-                            height={70}
-                            className={styles.cart__img}
-                        />
-                        <h3 className={styles.cart__title}>
-                            Мужские Кроссовки Nike Air Max 270
-                        </h3>
-                        <p className={styles.cart__price}>
-                            12 999 руб.
-                        </p>
-                        <img
-                            src='/assets/icons/cross.svg'
-                            alt='Сross'
-                            width={32}
-                            height={32}
-                            className={styles.cart__cross}
-                        />
-                    </li>
+                    ))}
                 </ul>
 
                 <ul className={styles.drawer__priceBlock}>

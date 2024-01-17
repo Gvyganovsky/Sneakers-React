@@ -1,9 +1,13 @@
 import styles from './Product.module.scss';
 import React from 'react';
 
-function Product(props: any) {
+function Product({ img, title, price, onFavorite, onAddToCart }: any) {
     const [isAdded, setIsAdded] = React.useState(false);
-    const onBasket = () => setIsAdded(!isAdded);
+
+    const onBasket = () => {
+        setIsAdded(!isAdded);
+        onAddToCart({ img, title, price });
+    }
 
     return (
         <section className={styles.product}>
@@ -13,17 +17,17 @@ function Product(props: any) {
                 width={32}
                 height={32}
                 className={styles.product__likeIcon}
-                onClick={props.onFavorite}
+                onClick={onFavorite}
             />
             <img
-                src={props.img}
+                src={img}
                 alt='Sneaker'
                 width={133}
                 height={112}
                 className={styles.product__img}
             />
             <h3 className={styles.product__title}>
-                {props.title}
+                {title}
             </h3>
             <div className={styles.product__priceBlock}>
                 <img
@@ -38,7 +42,7 @@ function Product(props: any) {
                     Цена:
                 </p>
                 <p className={styles.product__price}>
-                    {props.price} руб.
+                    {price} руб.
                 </p>
             </div>
         </section>
