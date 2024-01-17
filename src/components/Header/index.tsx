@@ -4,7 +4,7 @@ import Basket from '../../assets/icons/basket.svg';
 import Bookmarks from '../../assets/icons/bookmarks.svg';
 import Profile from '../../assets/icons/profile.svg';
 
-function Header() {
+function Header(props: any) {
     return (
         <section className={styles.header}>
             <div className={styles.header__container}>
@@ -25,7 +25,7 @@ function Header() {
                 </div>
 
                 <ul className={styles.header__list}>
-                    <li className={styles.header__item}>
+                    <li className={styles.header__item} onClick={props.onClickBasket}>
                         <img
                             src={Basket}
                             alt="Basket"

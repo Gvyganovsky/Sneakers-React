@@ -1,11 +1,12 @@
 import styles from './Product.module.scss';
 import notLike from '../../assets/icons/notLike.svg';
 import notAdd from '../../assets/icons/notAdd.svg';
+import add from '../../assets/icons/add.svg';
+import React from 'react';
 
 function Product(props: any) {
-    const onClickBtnLike = () => {
-        alert('niugaa')
-    }
+    const [isAdded, setIsAdded] = React.useState(false);
+    const onBasket = () => setIsAdded(!isAdded);
 
     return (
         <section className={styles.product}>
@@ -15,7 +16,7 @@ function Product(props: any) {
                 width={32}
                 height={32}
                 className={styles.product__likeIcon}
-                onClick={onClickBtnLike}
+                onClick={props.onFavorite}
             />
             <img
                 src={props.img}
@@ -28,12 +29,13 @@ function Product(props: any) {
                 {props.title}
             </h3>
             <div className={styles.product__priceBlock}>
-            <img
-                    src={notAdd}
+                <img
+                    src={isAdded ? add : notAdd}
                     alt="notAdd"
                     width={32}
                     height={32}
                     className={styles.product__addIcon}
+                    onClick={onBasket}
                 />
                 <p className={styles.product__text}>
                     Цена:

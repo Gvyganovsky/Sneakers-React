@@ -3,11 +3,11 @@ import Сross from '../../assets/icons/cross.svg';
 import Sneaker1 from '../../assets/img/sneaker1.jpg';
 
 
-function Drawer() {
+function Drawer(props: any) {
     return (
         <section className={styles.overlay}>
             <div className={styles.drawer}>
-                <h2 className={`${styles.drawer__title} ${styles.cross}`}>Корзина</h2>
+                <h2 className={`${styles.drawer__title} ${styles.cross}`} onClick={props.onClickCross}>Корзина</h2>
                 <ul className={styles.cards__list}>
                     <li className={styles.cart__item}>
                         <img
