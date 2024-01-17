@@ -1,7 +1,4 @@
 import styles from './Drawer.module.scss';
-import Сross from '../../assets/icons/cross.svg';
-import Sneaker1 from '../../assets/img/sneaker1.jpg';
-
 
 function Drawer(props: any) {
     return (
@@ -11,7 +8,7 @@ function Drawer(props: any) {
                 <ul className={styles.cards__list}>
                     <li className={styles.cart__item}>
                         <img
-                            src={Sneaker1}
+                            src='/assets/img/sneaker1.jpg'
                             alt='Sneaker'
                             width={70}
                             height={70}
@@ -24,7 +21,7 @@ function Drawer(props: any) {
                             12 999 руб.
                         </p>
                         <img
-                            src={Сross}
+                            src='/assets/icons/cross.svg'
                             alt='Сross'
                             width={32}
                             height={32}
@@ -33,7 +30,7 @@ function Drawer(props: any) {
                     </li>
                     <li className={styles.cart__item}>
                         <img
-                            src={Sneaker1}
+                            src='/assets/img/sneaker1.jpg'
                             alt='Sneaker'
                             width={70}
                             height={70}
@@ -46,7 +43,7 @@ function Drawer(props: any) {
                             12 999 руб.
                         </p>
                         <img
-                            src={Сross}
+                            src='/assets/icons/cross.svg'
                             alt='Сross'
                             width={32}
                             height={32}

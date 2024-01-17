@@ -1,14 +1,11 @@
 import styles from './Hero.module.scss'
-import Company from '../../assets/icons/company.svg'
-import hero from '../../assets/img/hero.png'
-import arrowCircle from '../../assets/icons/arrow-circle.svg'
 
 function Hero() {
     return (
         <section className={styles.hero}>
             <div className={styles.hero__container}>
                 <img
-                    src={Company}
+                    src='/assets/icons/company.svg'
                     alt="company"
                     width={99}
                     height={40}
@@ -25,14 +22,14 @@ function Hero() {
                         </button>
                     </div>
                     <img
-                        src={hero}
+                        src='/assets/img/hero.png'
                         alt="Stan Smith, Forever!"
                         width={642}
                         height={300}
                         className={styles.hero__img}
                     />
                     <img
-                        src={arrowCircle}
+                        src='/assets/icons/arrow-circle.svg'
                         alt="arrow"
                         width={60}
                         height={60}

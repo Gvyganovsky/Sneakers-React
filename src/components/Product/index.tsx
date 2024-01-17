@@ -1,7 +1,4 @@
 import styles from './Product.module.scss';
-import notLike from '../../assets/icons/notLike.svg';
-import notAdd from '../../assets/icons/notAdd.svg';
-import add from '../../assets/icons/add.svg';
 import React from 'react';
 
 function Product(props: any) {
@@ -11,7 +8,7 @@ function Product(props: any) {
     return (
         <section className={styles.product}>
             <img
-                src={notLike}
+                src='/assets/icons/notLike.svg'
                 alt="notLike"
                 width={32}
                 height={32}
@@ -30,8 +27,8 @@ function Product(props: any) {
             </h3>
             <div className={styles.product__priceBlock}>
                 <img
-                    src={isAdded ? add : notAdd}
-                    alt="notAdd"
+                    src={isAdded ? '/assets/icons/add.svg' : '/assets/icons/notAdd.svg'}
+                    alt="Add"
                     width={32}
                     height={32}
                     className={styles.product__addIcon}

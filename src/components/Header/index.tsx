@@ -1,8 +1,4 @@
 import styles from './Header.module.scss';
-import Logo from '../../assets/icons/logo.svg';
-import Basket from '../../assets/icons/basket.svg';
-import Bookmarks from '../../assets/icons/bookmarks.svg';
-import Profile from '../../assets/icons/profile.svg';
 
 function Header(props: any) {
     return (
@@ -10,7 +6,7 @@ function Header(props: any) {
             <div className={styles.header__container}>
                 <div className={styles.header__logoBlock}>
                     <img
-                        src={Logo}
+                        src='/assets/icons/logo.svg'
                         alt='logo'
                         width={40}
                         height={40}
@@ -27,7 +23,7 @@ function Header(props: any) {
                 <ul className={styles.header__list}>
                     <li className={styles.header__item} onClick={props.onClickBasket}>
                         <img
-                            src={Basket}
+                            src='/assets/icons/basket.svg'
                             alt="Basket"
                             width={18}
                             height={18}
@@ -39,7 +35,7 @@ function Header(props: any) {
                     </li>
                     <li className={styles.header__item}>
                         <img
-                            src={Bookmarks}
+                            src='/assets/icons/bookmarks.svg'
                             alt="Bookmarks"
                             width={18}
                             height={18}
@@ -51,7 +47,7 @@ function Header(props: any) {
                     </li>
                     <li className={styles.header__item}>
                         <img
-                            src={Profile}
+                            src='/assets/icons/profile.svg'
                             alt="Profile"
                             width={18}
                             height={18}

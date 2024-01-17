@@ -1,17 +1,11 @@
 import styles from './Catalog.module.scss';
 import Product from '../Product';
-import Search from '../../assets/icons/search.svg';
-
-import sneaker1 from '../../assets/img/sneaker1.jpg'
-import sneaker2 from '../../assets/img/sneaker2.jpg'
-import sneaker3 from '../../assets/img/sneaker3.jpg'
-import sneaker4 from '../../assets/img/sneaker4.jpg'
 
 const products = [
-    { img: sneaker1, title: 'Мужские Кроссовки Nike Blazer Mid Suede', price: 12999 },
-    { img: sneaker2, title: 'Мужские Кроссовки Nike Air Max 270', price: 12999 },
-    { img: sneaker3, title: 'Мужские Кроссовки Nike Blazer Mid Suede', price: 8499 },
-    { img: sneaker4, title: 'Кроссовки Puma X Aka Boku Future Rider', price: 8999 },
+    { img: '/assets/img/sneaker1.jpg', title: 'Мужские Кроссовки Nike Blazer Mid Suede', price: 12999 },
+    { img: '/assets/img/sneaker2.jpg', title: 'Мужские Кроссовки Nike Air Max 270', price: 12999 },
+    { img: '/assets/img/sneaker3.jpg', title: 'Мужские Кроссовки Nike Blazer Mid Suede', price: 8499 },
+    { img: '/assets/img/sneaker4.jpg', title: 'Кроссовки Puma X Aka Boku Future Rider', price: 8999 },
 ];
 
 function Catalog() {
@@ -23,7 +17,7 @@ function Catalog() {
                 </h2>
                 <form action="" className={styles.search__block}>
                     <img
-                        src={Search}
+                        src='/assets/icons/search.svg'
                         alt='Search'
                         width={15}
                         height={15}
