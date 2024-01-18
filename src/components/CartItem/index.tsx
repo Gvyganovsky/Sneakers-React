@@ -22,6 +22,7 @@ function CartItem(props: any) {
                 width={32}
                 height={32}
                 className={styles.cart__cross}
+                onClick={props.onClick}
             />
         </li>
     )

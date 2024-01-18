@@ -1,8 +1,9 @@
 import styles from './Catalog.module.scss';
 import Product from '../Product';
 import React from 'react';
+import axios from 'axios';
 
-function Catalog({ cartProducts, setCartProducts }: any) {
+function Catalog({setCartProducts }: any) {
     const [searchValue, setSearchValue] = React.useState('');
     const onChangeSearchInput = (event: any) => {
         setSearchValue(event.target.value)
@@ -10,15 +11,20 @@ function Catalog({ cartProducts, setCartProducts }: any) {
 
     const [products, setProducts] = React.useState<any[]>([]);
     React.useEffect(() => {
-        fetch('https://65a7c5a394c2c5762da7817d.mockapi.io/products').then((res) => {
-            return res.json();
-        })
-            .then((json) => {
-                setProducts(json);
-            })
+        // fetch('https://65a7c5a394c2c5762da7817d.mockapi.io/products').then((res) => {
+        //     return res.json();
+        // })
+        //     .then((json) => {
+        //         setProducts(json);
+        //     })
+
+        axios.get('https://65a7c5a394c2c5762da7817d.mockapi.io/products').then((res) => {
+            setProducts(res.data);
+        });
     }, []);
 
     const onAddToCart = (obj: any) => {
+        axios.post('https://65a7c5a394c2c5762da7817d.mockapi.io/cart', obj);
         setCartProducts((prev: any) => [...prev, obj]);
     };
 
