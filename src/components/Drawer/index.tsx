@@ -2,6 +2,7 @@ import styles from './Drawer.module.scss';
 import CartItem from '../CartItem';
 import axios from 'axios';
 import React from 'react';
+import Button from '../Button';
 
 function Drawer({ onClickCross }: any) {
     const [products, setProducts] = React.useState<any[]>([]);
@@ -21,43 +22,63 @@ function Drawer({ onClickCross }: any) {
         <section className={styles.overlay}>
             <div className={styles.drawer}>
                 <h2 className={`${styles.drawer__title} ${styles.cross}`} onClick={onClickCross}>Корзина</h2>
-                <ul className={styles.cards__list}>
-                    {products.map((item: { id: any; img: any; title: any; price: any; }) => (
-                        <CartItem
-                            key={item.id}
-                            img={item.img}
-                            title={item.title}
-                            price={item.price}
-                            onClick={() => onRemoveToCart(item.id)}
-                        />
-                    ))}
-                </ul>
 
-                <ul className={styles.drawer__priceBlock}>
-                    <li className={styles.price__item}>
-                        <p className={styles.price__text}>
-                            Итого:
-                        </p>
-                        <div className={styles.gray__line}></div>
-                        <p className={styles.price__textPrice}>
-                            21 498 руб.
-                        </p>
-                    </li>
-                    <li className={styles.price__item}>
-                        <p className={styles.price__text}>
-                            Налог 5%:
-                        </p>
-                        <div className={styles.gray__line}></div>
-                        <p className={styles.price__textPrice}>
-                            1074 руб.
-                        </p>
-                    </li>
-                    <li className={styles.price__item}>
-                        <button className={styles.price__btn}>
-                            Оформить заказ
-                        </button>
-                    </li>
-                </ul>
+                {
+                    products.length > 0 ? (
+                        <>
+                            <ul className={styles.cards__list}>
+                                {products.map((item: { id: any; img: any; title: any; price: any; }) => (
+                                    <CartItem
+                                        key={item.id}
+                                        img={item.img}
+                                        title={item.title}
+                                        price={item.price}
+                                        onClick={() => onRemoveToCart(item.id)}
+                                    />
+                                ))}
+                            </ul>
+                            <ul className={styles.drawer__priceBlock}>
+                                <li className={styles.price__item}>
+                                    <p className={styles.price__text}>
+                                        Итого:
+                                    </p>
+                                    <div className={styles.gray__line}></div>
+                                    <p className={styles.price__textPrice}>
+                                        21 498 руб.
+                                    </p>
+                                </li>
+                                <li className={styles.price__item}>
+                                    <p className={styles.price__text}>
+                                        Налог 5%:
+                                    </p>
+                                    <div className={styles.gray__line}></div>
+                                    <p className={styles.price__textPrice}>
+                                        1074 руб.
+                                    </p>
+                                </li>
+                                <li className={styles.price__item}>
+                                    <Button text='Оформить заказ' className={styles.price__btn} />
+                                </li>
+                            </ul>
+                        </>
+                    ) : (
+                        <div className={styles.nullBasket}>
+                            <img
+                                src="/assets/img/nullBasket.svg"
+                                alt="nullBasket"
+                                width={120}
+                                height={120}
+                                className={styles.nullBasket__img}
+                            />
+                            <p className={styles.nullBasket__title}>
+                                Корзина пустая
+                            </p>
+                            <p className={styles.nullBasket__text}>
+                                Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.
+                            </p>
+                            <Button text='Вернуться назад' className={styles.nullBasket__btn} onClick={onClickCross} />
+                        </div>
+                    )}
             </div>
         </section >
     );

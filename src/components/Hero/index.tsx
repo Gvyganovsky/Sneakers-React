@@ -1,4 +1,5 @@
 import styles from './Hero.module.scss'
+import Button from '../Button/'
 
 function Hero() {
     return (
@@ -17,9 +18,7 @@ function Hero() {
                                 Stan Smith
                             </span>, Forever!
                         </h2>
-                        <button type='button' className={styles.hero__btn}>
-                            Купить
-                        </button>
+                        <Button text='Купить' className={styles.hero__btn}/>
                     </div>
                     <img
                         src='/assets/img/hero.png'
