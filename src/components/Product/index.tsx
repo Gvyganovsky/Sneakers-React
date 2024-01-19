@@ -1,18 +1,24 @@
 import styles from './Product.module.scss';
 import React from 'react';
 
-function Product({ img, title, price, onFavorite, onAddToCart }: any) {
+function Product({ img, title, price, onAddFavorite, onAddToCart }: any) {
     const [isAdded, setIsAdded] = React.useState(false);
+    const [isFavorite, setIsFavorite] = React.useState(false);
 
     const onBasket = () => {
         setIsAdded(!isAdded);
         onAddToCart({ img, title, price });
     }
 
+    const onFavorite = () => {
+        setIsFavorite(!isFavorite);
+        onAddFavorite({ img, title, price });
+    }
+
     return (
         <section className={styles.product}>
             <img
-                src='/assets/icons/notLike.svg'
+                src={isFavorite ? '/assets/icons/like.svg' : '/assets/icons/notLike.svg'}
                 alt="notLike"
                 width={32}
                 height={32}

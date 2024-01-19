@@ -3,7 +3,7 @@ import Product from '../Product';
 import React from 'react';
 import axios from 'axios';
 
-function Catalog({setCartProducts }: any) {
+function Catalog({setCartProducts, setFavorite }: any) {
     const [searchValue, setSearchValue] = React.useState('');
     const onChangeSearchInput = (event: any) => {
         setSearchValue(event.target.value)
@@ -22,6 +22,11 @@ function Catalog({setCartProducts }: any) {
             setProducts(res.data);
         });
     }, []);
+
+    const onAddFavorite = (obj: any) => {
+        axios.post('https://65aa1b5e081bd82e1d961920.mockapi.io/favorite', obj);
+        setFavorite((prev: any) => [...prev, obj]);
+    }
 
     const onAddToCart = (obj: any) => {
         axios.post('https://65a7c5a394c2c5762da7817d.mockapi.io/cart', obj);
@@ -60,6 +65,7 @@ function Catalog({setCartProducts }: any) {
                                 img={product.img}
                                 title={product.title}
                                 price={product.price}
+                                onAddFavorite={(obj: any) => onAddFavorite(obj)}
                                 onAddToCart={(obj: any) => onAddToCart(obj)}
                             />
                         ))}

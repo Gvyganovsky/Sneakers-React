@@ -6,7 +6,6 @@ import Button from '../Button';
 
 function Drawer({ onClickCross }: any) {
     const [products, setProducts] = React.useState<any[]>([]);
-
     React.useEffect(() => {
         axios.get('https://65a7c5a394c2c5762da7817d.mockapi.io/cart').then((res) => {
             setProducts(res.data);
@@ -22,7 +21,6 @@ function Drawer({ onClickCross }: any) {
         <section className={styles.overlay}>
             <div className={styles.drawer}>
                 <h2 className={`${styles.drawer__title} ${styles.cross}`} onClick={onClickCross}>Корзина</h2>
-
                 {
                     products.length > 0 ? (
                         <>
