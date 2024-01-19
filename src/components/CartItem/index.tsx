@@ -14,7 +14,7 @@ function CartItem(props: any) {
                 {props.title}
             </h3>
             <p className={styles.cart__price}>
-                {props.price}
+                {props.price} руб.
             </p>
             <img
                 src='/assets/icons/cross.svg'

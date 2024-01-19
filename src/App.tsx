@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.scss';
-import Catalog from './components/Catalog';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Drawer from './components/Drawer';
 import Header from './components/Header';
-import Hero from './components/Hero';
+import Home from './pages/Home';
 
 function App() {
   const [BasketOpen, setBasketOpened] = React.useState(false);
@@ -14,9 +14,20 @@ function App() {
     <section className="App">
       {BasketOpen ? <Drawer products={cartProducts} onClickCross={() => setBasketOpened(false)} /> : null}
       <Header onClickBasket={() => setBasketOpened(true)} />
-      <Hero />
-      <Catalog cartProducts={cartProducts} setCartProducts={setCartProducts} setFavorite={setFavorite} />
-    </section>
+
+        <Routes>
+          <Route
+            path='/'
+            element={
+              <Home
+                cartProducts={cartProducts}
+                setCartProducts={setCartProducts}
+                setFavorite={setFavorite}
+              />
+            }
+          />
+        </Routes>
+    </section >
   );
 }
 
