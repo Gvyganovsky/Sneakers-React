@@ -13,8 +13,13 @@ function App() {
   const [favorite, setFavorite] = React.useState<any[]>([]);
 
   const onAddFavorite = (obj: any) => {
-    axios.post('https://65aa1b5e081bd82e1d961920.mockapi.io/favorite', obj);
-    setFavorite((prev: any) => [...prev, obj]);
+    if (favorite.find((favObj: { id: any; }) => favObj.id === obj.id)) {
+      axios.delete(`https://65aa1b5e081bd82e1d961920.mockapi.io/favorite/${obj.id}`);
+      setFavorite((prev: any) => prev.filter((product: { id: any; }) => product.id !== obj.id));
+    } else {
+      axios.post('https://65aa1b5e081bd82e1d961920.mockapi.io/favorite', obj);
+      setFavorite((prev: any) => [...prev, obj]);
+    }
   }
 
   return (
@@ -41,6 +46,9 @@ function App() {
           path='/favorites'
           element={
             <Favorites
+              onAddFavorite={onAddFavorite}
+
+
               favorite={favorite}
               setFavorite={setFavorite}
               setCartProducts={setCartProducts}

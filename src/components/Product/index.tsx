@@ -12,7 +12,7 @@ function Product({ id, img, title, price, onAddFavorite, onAddToCart, favorited 
 
     const onFavorite = () => {
         setIsFavorite(!isFavorite);
-        onAddFavorite({ img, title, price });
+        onAddFavorite({ id, img, title, price });
     }
 
     return (

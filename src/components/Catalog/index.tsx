@@ -51,11 +51,9 @@ function Catalog({ setCartProducts, onAddFavorite }: any) {
                         .map((product) => (
                             <Product
                                 key={product.title}
-                                img={product.img}
-                                title={product.title}
-                                price={product.price}
                                 onAddFavorite={(obj: any) => onAddFavorite(obj)}
                                 onAddToCart={(obj: any) => onAddToCart(obj)}
+                                {...product}
                             />
                         ))}
                 </div>
