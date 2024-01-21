@@ -2,11 +2,11 @@ import React from 'react';
 import Catalog from '../components/Catalog';
 import Hero from '../components/Hero';
 
-function Home({ cartProducts, setCartProducts, setFavorite }: any) {
+function Home({ cartProducts, setCartProducts, onAddFavorite }: any) {
     return (
         <>
             <Hero />
-            <Catalog cartProducts={cartProducts} setCartProducts={setCartProducts} setFavorite={setFavorite} />
+            <Catalog cartProducts={cartProducts} setCartProducts={setCartProducts} onAddFavorite={onAddFavorite} />
         </>
     );
 }

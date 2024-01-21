@@ -3,30 +3,19 @@ import Product from '../Product';
 import React from 'react';
 import axios from 'axios';
 
-function Catalog({setCartProducts, setFavorite }: any) {
+function Catalog({ setCartProducts, onAddFavorite }: any) {
     const [searchValue, setSearchValue] = React.useState('');
+    const [products, setProducts] = React.useState<any[]>([]);
+
     const onChangeSearchInput = (event: any) => {
         setSearchValue(event.target.value)
     }
 
-    const [products, setProducts] = React.useState<any[]>([]);
     React.useEffect(() => {
-        // fetch('https://65a7c5a394c2c5762da7817d.mockapi.io/products').then((res) => {
-        //     return res.json();
-        // })
-        //     .then((json) => {
-        //         setProducts(json);
-        //     })
-
         axios.get('https://65a7c5a394c2c5762da7817d.mockapi.io/products').then((res) => {
             setProducts(res.data);
         });
     }, []);
-
-    const onAddFavorite = (obj: any) => {
-        axios.post('https://65aa1b5e081bd82e1d961920.mockapi.io/favorite', obj);
-        setFavorite((prev: any) => [...prev, obj]);
-    }
 
     const onAddToCart = (obj: any) => {
         axios.post('https://65a7c5a394c2c5762da7817d.mockapi.io/cart', obj);
