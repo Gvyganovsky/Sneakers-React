@@ -1,20 +1,24 @@
 import styles from './CartItem.module.scss';
 
-function CartItem(props: any) {
+function CartItem({ id, img, title, price, onCart }: any) {
+    const onBasket = () => {
+        onCart({ id, img, title, price });
+    }
+
     return (
         <li className={styles.cart__item}>
             <img
-                src={props.img}
+                src={img}
                 alt='Sneaker'
                 width={70}
                 height={70}
                 className={styles.cart__img}
             />
             <h3 className={styles.cart__title}>
-                {props.title}
+                {title}
             </h3>
             <p className={styles.cart__price}>
-                {props.price} руб.
+                {price} руб.
             </p>
             <img
                 src='/assets/icons/cross.svg'
@@ -22,7 +26,7 @@ function CartItem(props: any) {
                 width={32}
                 height={32}
                 className={styles.cart__cross}
-                onClick={props.onClick}
+                onClick={onBasket}
             />
         </li>
     )

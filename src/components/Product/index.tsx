@@ -1,18 +1,18 @@
 import styles from './Product.module.scss';
 import React from 'react';
 
-function Product({ id, img, title, price, onAddFavorite, onAddToCart, favorited }: any) {
+function Product({ id, img, title, price, onFavorite, onCart, favorited }: any) {
     const [isAdded, setIsAdded] = React.useState(false);
     const [isFavorite, setIsFavorite] = React.useState(favorited);
 
     const onBasket = () => {
         setIsAdded(!isAdded);
-        onAddToCart({ img, title, price });
+        onCart({ id, img, title, price });
     }
 
-    const onFavorite = () => {
+    const Favorite = () => {
         setIsFavorite(!isFavorite);
-        onAddFavorite({ id, img, title, price });
+        onFavorite({ id, img, title, price });
     }
 
     return (
@@ -23,7 +23,7 @@ function Product({ id, img, title, price, onAddFavorite, onAddToCart, favorited 
                 width={32}
                 height={32}
                 className={styles.product__likeIcon}
-                onClick={onFavorite}
+                onClick={Favorite}
             />
             <img
                 src={img}

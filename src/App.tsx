@@ -9,22 +9,33 @@ import axios from 'axios';
 
 function App() {
   const [BasketOpen, setBasketOpened] = React.useState(false);
-  const [cartProducts, setCartProducts] = React.useState([]);
   const [favorite, setFavorite] = React.useState<any[]>([]);
+  const [cartProducts, setCartProducts] = React.useState<any[]>([]);
 
-  const onAddFavorite = (obj: any) => {
+  const onFavorite = async (obj: any) => {
     if (favorite.find((favObj: { id: any; }) => favObj.id === obj.id)) {
       axios.delete(`https://65aa1b5e081bd82e1d961920.mockapi.io/favorite/${obj.id}`);
-      setFavorite((prev: any) => prev.filter((product: { id: any; }) => product.id !== obj.id));
+      // setFavorite((prev: any) => prev.filter((product: { id: any; }) => product.id !== obj.id));
     } else {
-      axios.post('https://65aa1b5e081bd82e1d961920.mockapi.io/favorite', obj);
-      setFavorite((prev: any) => [...prev, obj]);
+      const { data } = await axios.post('https://65aa1b5e081bd82e1d961920.mockapi.io/favorite', obj);
+      setFavorite((prev: any) => [...prev, data]);
     }
   }
 
+  const onCart = async (obj: any) => {
+    if (cartProducts.find((prodObj: { id: any; }) => Number(prodObj.id) === Number(obj.id))) {
+      axios.delete(`https://65a7c5a394c2c5762da7817d.mockapi.io/cart/${obj.id}`);
+      setCartProducts((prev: any) => prev.filter((prodObj: { id: any; }) => prodObj.id !== obj.id));
+      console.log(setCartProducts);
+    } else {
+      const { data } = await axios.post('https://65a7c5a394c2c5762da7817d.mockapi.io/cart', obj);
+      setCartProducts((prev: any) => [...prev, data]);
+    }
+  };
+
   return (
     <section className="App" >
-      {BasketOpen ? <Drawer products={cartProducts} onClickCross={() => setBasketOpened(false)} /> : null}
+      {BasketOpen ? <Drawer onCart={onCart} products={cartProducts} onClickCross={() => setBasketOpened(false)} /> : null}
       <Header onClickBasket={() => setBasketOpened(true)} />
 
       <Routes>
@@ -32,8 +43,8 @@ function App() {
           path='/'
           element={
             <Home
-
-              onAddFavorite={onAddFavorite}
+              onFavorite={onFavorite}
+              onCart={onCart}
 
 
               cartProducts={cartProducts}
@@ -46,7 +57,7 @@ function App() {
           path='/favorites'
           element={
             <Favorites
-              onAddFavorite={onAddFavorite}
+              onFavorite={onFavorite}
 
 
               favorite={favorite}

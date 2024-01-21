@@ -4,18 +4,13 @@ import axios from 'axios';
 import React from 'react';
 import Button from '../Button';
 
-function Drawer({ onClickCross }: any) {
+function Drawer({ onCart, onClickCross }: any) {
     const [products, setProducts] = React.useState<any[]>([]);
     React.useEffect(() => {
         axios.get('https://65a7c5a394c2c5762da7817d.mockapi.io/cart').then((res) => {
             setProducts(res.data);
         });
     }, []);
-
-    const onRemoveToCart = (id: any) => {
-        axios.delete(`https://65a7c5a394c2c5762da7817d.mockapi.io/cart/${id}`);
-        setProducts((prev: any) => prev.filter((item: { id: any; }) => item.id !== id));
-    }
 
     return (
         <section className={styles.overlay}>
@@ -25,13 +20,11 @@ function Drawer({ onClickCross }: any) {
                     products.length > 0 ? (
                         <>
                             <ul className={styles.cards__list}>
-                                {products.map((item: { id: any; img: any; title: any; price: any; }) => (
+                                {products.map((item) => (
                                     <CartItem
                                         key={item.id}
-                                        img={item.img}
-                                        title={item.title}
-                                        price={item.price}
-                                        onClick={() => onRemoveToCart(item.id)}
+                                        onCart={(obj: any) => onCart(obj)}
+                                        {...item}
                                     />
                                 ))}
                             </ul>

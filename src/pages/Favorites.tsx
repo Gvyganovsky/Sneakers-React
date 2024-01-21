@@ -4,14 +4,14 @@ import styles from '../components/Catalog/Catalog.module.scss';
 import Product from "../components/Product";
 import Button from '../components/Button/';
 
-function Favorites({ favorite, setFavorite, setCartProducts, onAddFavorite }: any) {
+function Favorites({ favorite, setFavorite, setCartProducts, onFavorite }: any) {
     React.useEffect(() => {
         axios.get('https://65aa1b5e081bd82e1d961920.mockapi.io/favorite').then((res) => {
             setFavorite(res.data);
         });
     }, []);
 
-    const onAddToCart = (obj: any) => {
+    const onCart = (obj: any) => {
         axios.post('https://65a7c5a394c2c5762da7817d.mockapi.io/cart', obj);
         setCartProducts((prev: any) => [...prev, obj]);
     };
@@ -28,8 +28,8 @@ function Favorites({ favorite, setFavorite, setCartProducts, onAddFavorite }: an
                             {favorite.map((product: { id: any, title: any; img: any; price: any; }) => (
                                 <Product
                                     key={product.id}
-                                    onAddFavorite={() => onAddFavorite(product)}
-                                    onAddToCart={(obj: any) => onAddToCart(obj)}
+                                    onFavorite={() => onFavorite(product)}
+                                    onCart={(obj: any) => onCart(obj)}
                                     favorited={true}
                                     {...product}
                                 />
