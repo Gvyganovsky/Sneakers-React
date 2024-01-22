@@ -6,7 +6,12 @@ function Home({ cartProducts, setCartProducts, onFavorite, onCart }: any) {
     return (
         <>
             <Hero />
-            <Catalog cartProducts={cartProducts} setCartProducts={setCartProducts} onFavorite={onFavorite} onCart={onCart} />
+            <Catalog
+                cartProducts={cartProducts}
+                setCartProducts={setCartProducts}
+                onFavorite={onFavorite}
+                onCart={onCart}
+            />
         </>
     );
 }

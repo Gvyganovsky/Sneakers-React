@@ -21,29 +21,37 @@ function App() {
         const { data } = await axios.post('https://65aa1b5e081bd82e1d961920.mockapi.io/favorite', obj);
         setFavorite((prev: any) => [...prev, data]);
       }
-    } catch (error){
+    } catch (error) {
       alert('Не удалось добавить в закладки')
     }
   }
 
   const onCart = async (obj: any) => {
     try {
-    if (cartProducts.find((prodObj: { id: any; }) => Number(prodObj.id) === Number(obj.id))) {
-      axios.delete(`https://65a7c5a394c2c5762da7817d.mockapi.io/cart/${obj.id}`);
-      setCartProducts((prev: any) => prev.filter((prodObj: { id: any; }) => prodObj.id !== obj.id));
-      console.log(setCartProducts);
-    } else {
-      const { data } = await axios.post('https://65a7c5a394c2c5762da7817d.mockapi.io/cart', obj);
-      setCartProducts((prev: any) => [...prev, data]);
+      if (cartProducts.find((prodObj: { id: any; }) => Number(prodObj.id) === Number(obj.id))) {
+        axios.delete(`https://65a7c5a394c2c5762da7817d.mockapi.io/cart/${obj.id}`);
+        setCartProducts((prev: any) => prev.filter((prodObj: { id: any; }) => prodObj.id !== obj.id));
+      } else {
+        const { data } = await axios.post('https://65a7c5a394c2c5762da7817d.mockapi.io/cart', obj);
+        setCartProducts((prev: any) => [...prev, data]);
+      }
+    } catch (error) {
+      alert('Не удалось добавить товар в корзину')
     }
-  } catch (error) {
-    alert('Не удалось добавить товар в корзину')
-  }
-};
+  };
 
   return (
     <section className="App" >
-      {BasketOpen ? <Drawer setCartProducts={setCartProducts} cartProducts={cartProducts} onCart={onCart} products={cartProducts} onClickCross={() => setBasketOpened(false)} /> : null}
+      {
+        BasketOpen ?
+          <Drawer
+            setCartProducts={setCartProducts}
+            cartProducts={cartProducts}
+            onCart={onCart}
+            products={cartProducts}
+            onClickCross={() => setBasketOpened(false)} />
+          : null
+      }
       <Header onClickBasket={() => setBasketOpened(true)} />
 
       <Routes>
@@ -53,8 +61,6 @@ function App() {
             <Home
               onFavorite={onFavorite}
               onCart={onCart}
-
-
               cartProducts={cartProducts}
               setCartProducts={setCartProducts}
               setFavorite={setFavorite}

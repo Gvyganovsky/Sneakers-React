@@ -3,7 +3,7 @@ import Product from '../Product';
 import React from 'react';
 import axios from 'axios';
 
-function Catalog({ onCart, onFavorite }: any) {
+function Catalog({ onCart, onFavorite, cartProducts, setCartProducts }: any) {
     const [searchValue, setSearchValue] = React.useState('');
     const [products, setProducts] = React.useState<any[]>([]);
 
@@ -48,6 +48,7 @@ function Catalog({ onCart, onFavorite }: any) {
                                 key={product.title}
                                 onFavorite={(obj: any) => onFavorite(obj)}
                                 onCart={(obj: any) => onCart(obj)}
+                                added={cartProducts.some((obj: any) => Number(obj.id) === Number(product.id))}
                                 {...product}
                             />
                         ))}

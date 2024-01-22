@@ -1,8 +1,8 @@
 import styles from './Product.module.scss';
 import React from 'react';
 
-function Product({ id, img, title, price, onFavorite, onCart, favorited }: any) {
-    const [isAdded, setIsAdded] = React.useState(false);
+function Product({ id, img, title, price, onFavorite, onCart, favorited = false, added = false }: any) {
+    const [isAdded, setIsAdded] = React.useState(added);
     const [isFavorite, setIsFavorite] = React.useState(favorited);
 
     const onBasket = () => {
