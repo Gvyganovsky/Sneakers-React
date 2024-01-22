@@ -2,11 +2,28 @@ import styles from './Catalog.module.scss';
 import Product from '../Product';
 import React from 'react';
 
-function Catalog({ onCart, onFavorite, cartProducts, products, favorite }: any) {
+function Catalog({ onCart, onFavorite, cartProducts, products, favorite, isLoading }: any) {
     const [searchValue, setSearchValue] = React.useState('');
 
     const onChangeSearchInput = (event: any) => {
         setSearchValue(event.target.value)
+    }
+
+    const renderProducts = () => {
+        const filterProducts = products.filter((product: { title: string; }) =>
+            product.title.toLowerCase().includes(searchValue.toLowerCase()));
+
+        return (isLoading ? [...Array(12)] : filterProducts).map((product: { title: any; id: any; }) => (
+            <Product
+                // key={product.title}
+                onFavorite={(obj: any) => onFavorite(obj)}
+                onCart={(obj: any) => onCart(obj)}
+                favorited={favorite.some((obj: any) => Number(obj.id) === Number(product.id))}
+                added={cartProducts.some((obj: any) => Number(obj.id) === Number(product.id))}
+                isLoading={isLoading}
+                {...product}
+            />
+        ))
     }
 
     return (
@@ -33,18 +50,7 @@ function Catalog({ onCart, onFavorite, cartProducts, products, favorite }: any) 
                     />
                 </form>
                 <div className={styles.catalog__content}>
-                    {products
-                        .filter((product: { title: string; }) => product.title.toLowerCase().includes(searchValue.toLowerCase()))
-                        .map((product: { title: any; id: any; }) => (
-                            <Product
-                                key={product.title}
-                                onFavorite={(obj: any) => onFavorite(obj)}
-                                onCart={(obj: any) => onCart(obj)}
-                                favorited={favorite.some((obj: any) => Number(obj.id) === Number(product.id))}
-                                added={cartProducts.some((obj: any) => Number(obj.id) === Number(product.id))}
-                                {...product}
-                            />
-                        ))}
+                    {renderProducts()}
                 </div>
             </div>
         </section >

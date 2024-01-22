@@ -12,12 +12,15 @@ function App() {
   const [favorite, setFavorite] = React.useState<any[]>([]);
   const [cartProducts, setCartProducts] = React.useState<any[]>([]);
   const [products, setProducts] = React.useState<any[]>([]);
+  const [isLoading, setIsLoading] = React.useState(true);
 
   React.useEffect(() => {
     async function fetchData() {
       const cartResponce = await axios.get('https://65a7c5a394c2c5762da7817d.mockapi.io/cart');
       const favoriteResponce = await axios.get('https://65aa1b5e081bd82e1d961920.mockapi.io/favorite');
       const productsResponce = await axios.get('https://65a7c5a394c2c5762da7817d.mockapi.io/products');
+
+      setIsLoading(false);
 
       setCartProducts(cartResponce.data);
       setFavorite(favoriteResponce.data);
@@ -80,6 +83,7 @@ function App() {
               setFavorite={setFavorite}
               products={products}
               favorite={favorite}
+              isLoading={isLoading}
             />
           }
         />
