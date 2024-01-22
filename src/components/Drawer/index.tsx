@@ -1,16 +1,8 @@
 import styles from './Drawer.module.scss';
 import CartItem from '../CartItem';
-import axios from 'axios';
-import React from 'react';
 import Button from '../Button';
 
 function Drawer({ onCart, onClickCross, setCartProducts, cartProducts }: any) {
-    React.useEffect(() => {
-        axios.get('https://65a7c5a394c2c5762da7817d.mockapi.io/cart').then((res) => {
-            setCartProducts(res.data);
-        });
-    }, []);
-
     return (
         <section className={styles.overlay}>
             <div className={styles.drawer}>

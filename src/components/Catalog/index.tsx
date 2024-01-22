@@ -1,21 +1,13 @@
 import styles from './Catalog.module.scss';
 import Product from '../Product';
 import React from 'react';
-import axios from 'axios';
 
-function Catalog({ onCart, onFavorite, cartProducts, setCartProducts }: any) {
+function Catalog({ onCart, onFavorite, cartProducts, setCartProducts, products }: any) {
     const [searchValue, setSearchValue] = React.useState('');
-    const [products, setProducts] = React.useState<any[]>([]);
 
     const onChangeSearchInput = (event: any) => {
         setSearchValue(event.target.value)
     }
-
-    React.useEffect(() => {
-        axios.get('https://65a7c5a394c2c5762da7817d.mockapi.io/products').then((res) => {
-            setProducts(res.data);
-        });
-    }, []);
 
     return (
         <section className={styles.catalog}>
@@ -42,8 +34,8 @@ function Catalog({ onCart, onFavorite, cartProducts, setCartProducts }: any) {
                 </form>
                 <div className={styles.catalog__content}>
                     {products
-                        .filter((product) => product.title.toLowerCase().includes(searchValue.toLowerCase()))
-                        .map((product) => (
+                        .filter((product: { title: string; }) => product.title.toLowerCase().includes(searchValue.toLowerCase()))
+                        .map((product: { title: any; id: any; }) => (
                             <Product
                                 key={product.title}
                                 onFavorite={(obj: any) => onFavorite(obj)}
