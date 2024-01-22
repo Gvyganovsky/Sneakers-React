@@ -15,13 +15,13 @@ function App() {
 
   React.useEffect(() => {
     async function fetchData() {
-      const productsResponce = await axios.get('https://65a7c5a394c2c5762da7817d.mockapi.io/products');
       const cartResponce = await axios.get('https://65a7c5a394c2c5762da7817d.mockapi.io/cart');
       const favoriteResponce = await axios.get('https://65aa1b5e081bd82e1d961920.mockapi.io/favorite');
+      const productsResponce = await axios.get('https://65a7c5a394c2c5762da7817d.mockapi.io/products');
 
-      setProducts(productsResponce.data);
       setCartProducts(cartResponce.data);
       setFavorite(favoriteResponce.data);
+      setProducts(productsResponce.data);
     }
     fetchData();
   }, []);
@@ -30,7 +30,7 @@ function App() {
     try {
       if (favorite.find((favObj: { id: any; }) => favObj.id === obj.id)) {
         axios.delete(`https://65aa1b5e081bd82e1d961920.mockapi.io/favorite/${obj.id}`);
-        // setFavorite((prev: any) => prev.filter((product: { id: any; }) => product.id !== obj.id));
+        setFavorite((prev: any) => prev.filter((product: { id: any; }) => product.id !== obj.id));
       } else {
         const { data } = await axios.post('https://65aa1b5e081bd82e1d961920.mockapi.io/favorite', obj);
         setFavorite((prev: any) => [...prev, data]);
