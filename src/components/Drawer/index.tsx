@@ -4,11 +4,10 @@ import axios from 'axios';
 import React from 'react';
 import Button from '../Button';
 
-function Drawer({ onCart, onClickCross }: any) {
-    const [products, setProducts] = React.useState<any[]>([]);
+function Drawer({ onCart, onClickCross, setCartProducts, cartProducts }: any) {
     React.useEffect(() => {
         axios.get('https://65a7c5a394c2c5762da7817d.mockapi.io/cart').then((res) => {
-            setProducts(res.data);
+            setCartProducts(res.data);
         });
     }, []);
 
@@ -17,10 +16,10 @@ function Drawer({ onCart, onClickCross }: any) {
             <div className={styles.drawer}>
                 <h2 className={`${styles.drawer__title} ${styles.cross}`} onClick={onClickCross}>Корзина</h2>
                 {
-                    products.length > 0 ? (
+                    cartProducts.length > 0 ? (
                         <>
                             <ul className={styles.cards__list}>
-                                {products.map((item) => (
+                                {cartProducts.map((item: any) => (
                                     <CartItem
                                         key={item.id}
                                         onCart={(obj: any) => onCart(obj)}
