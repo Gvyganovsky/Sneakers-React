@@ -2,7 +2,7 @@ import styles from './Catalog.module.scss';
 import Product from '../Product';
 import React from 'react';
 
-function Catalog({ onCart, onFavorite, cartProducts, setCartProducts, products }: any) {
+function Catalog({ onCart, onFavorite, cartProducts, products, favorite }: any) {
     const [searchValue, setSearchValue] = React.useState('');
 
     const onChangeSearchInput = (event: any) => {
@@ -40,6 +40,7 @@ function Catalog({ onCart, onFavorite, cartProducts, setCartProducts, products }
                                 key={product.title}
                                 onFavorite={(obj: any) => onFavorite(obj)}
                                 onCart={(obj: any) => onCart(obj)}
+                                favorited={favorite.some((obj: any) => Number(obj.id) === Number(product.id))}
                                 added={cartProducts.some((obj: any) => Number(obj.id) === Number(product.id))}
                                 {...product}
                             />

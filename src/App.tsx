@@ -79,6 +79,7 @@ function App() {
               setCartProducts={setCartProducts}
               setFavorite={setFavorite}
               products={products}
+              favorite={favorite}
             />
           }
         />

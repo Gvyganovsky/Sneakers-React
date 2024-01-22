@@ -2,7 +2,7 @@ import React from 'react';
 import Catalog from '../components/Catalog';
 import Hero from '../components/Hero';
 
-function Home({ cartProducts, setCartProducts, onFavorite, onCart, products }: any) {
+function Home({ cartProducts, setCartProducts, onFavorite, onCart, products, favorite }: any) {
     return (
         <>
             <Hero />
@@ -12,6 +12,7 @@ function Home({ cartProducts, setCartProducts, onFavorite, onCart, products }: a
                 setCartProducts={setCartProducts}
                 onFavorite={onFavorite}
                 onCart={onCart}
+                favorite={favorite}
             />
         </>
     );
