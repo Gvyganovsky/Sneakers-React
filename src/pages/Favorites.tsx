@@ -1,14 +1,11 @@
-import React from "react";
-import axios from "axios";
+import React from 'react';
 import styles from '../components/Catalog/Catalog.module.scss';
 import Product from "../components/Product";
 import Button from '../components/Button/';
+import AppContext from '../AppContext'
 
-function Favorites({ favorite, setFavorite, setCartProducts, onFavorite }: any) {
-    const onCart = (obj: any) => {
-        axios.post('https://65a7c5a394c2c5762da7817d.mockapi.io/cart', obj);
-        setCartProducts((prev: any) => [...prev, obj]);
-    };
+function Favorites({ onCart, onFavorite }: any) {
+    const { favorite } = React.useContext(AppContext);
 
     return (
         <section className={styles.catalog}>

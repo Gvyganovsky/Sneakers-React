@@ -1,17 +1,18 @@
 import React from 'react';
+import axios from 'axios';
 import './App.scss';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Drawer from './components/Drawer';
 import Header from './components/Header';
 import Home from './pages/Home';
 import Favorites from './pages/Favorites';
-import axios from 'axios';
+import AppContext from './AppContext';
 
 function App() {
+  const [products, setProducts] = React.useState<any[]>([]);
   const [BasketOpen, setBasketOpened] = React.useState(false);
   const [favorite, setFavorite] = React.useState<any[]>([]);
   const [cartProducts, setCartProducts] = React.useState<any[]>([]);
-  const [products, setProducts] = React.useState<any[]>([]);
   const [isLoading, setIsLoading] = React.useState(true);
 
   React.useEffect(() => {
@@ -58,50 +59,48 @@ function App() {
   };
 
   return (
-    <section className="App" >
-      {
-        BasketOpen ?
-          <Drawer
-            setCartProducts={setCartProducts}
-            cartProducts={cartProducts}
-            onCart={onCart}
-            products={cartProducts}
-            onClickCross={() => setBasketOpened(false)} />
-          : null
-      }
-      <Header onClickBasket={() => setBasketOpened(true)} />
-
-      <Routes>
-        <Route
-          path='/'
-          element={
-            <Home
-              onFavorite={onFavorite}
-              onCart={onCart}
+    <AppContext.Provider value={{ products, favorite, cartProducts }}>
+      <section className="App" >
+        {
+          BasketOpen ?
+            <Drawer
+              setCartProducts={setCartProducts}
               cartProducts={cartProducts}
-              setCartProducts={setCartProducts}
-              setFavorite={setFavorite}
-              products={products}
-              favorite={favorite}
-              isLoading={isLoading}
-            />
-          }
-        />
-        <Route
-          path='/favorites'
-          element={
-            <Favorites
-              onFavorite={onFavorite}
+              onCart={onCart}
+              products={cartProducts}
+              onClickCross={() => setBasketOpened(false)} />
+            : null
+        }
+        <Header onClickBasket={() => setBasketOpened(true)} />
 
-
-              favorite={favorite}
-              setFavorite={setFavorite}
-              setCartProducts={setCartProducts}
-            />
-          }
-        />
-      </Routes>
-    </section >
+        <Routes>
+          <Route
+            path='/'
+            element={
+              <Home
+                products={products}
+                onFavorite={onFavorite}
+                onCart={onCart}
+                cartProducts={cartProducts}
+                setCartProducts={setCartProducts}
+                setFavorite={setFavorite}
+                favorite={favorite}
+                isLoading={isLoading}
+              />
+            }
+          />
+          <Route
+            path='/favorites'
+            element={
+              <Favorites
+                onCart={onCart}
+                onFavorite={onFavorite}
+              />
+            }
+          />
+        </Routes>
+      </section >
+    </AppContext.Provider >
   );
 }
 
