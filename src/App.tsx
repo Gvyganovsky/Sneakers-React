@@ -46,20 +46,22 @@ function App() {
 
   const onCart = async (obj: any) => {
     try {
-      if (cartProducts.find((prodObj: { id: any; }) => Number(prodObj.id) === Number(obj.id))) {
+      if (cartProducts.find((prodObj: { prod_id: any; }) => Number(prodObj.prod_id) === Number(obj.prod_id))) {
         axios.delete(`https://65a7c5a394c2c5762da7817d.mockapi.io/cart/${obj.id}`);
-        setCartProducts((prev: any) => prev.filter((prodObj: { id: any; }) => prodObj.id !== obj.id));
+        setCartProducts((prev: any) => prev.filter((prodObj: { prod_id: any; }) => prodObj.prod_id !== obj.prod_id));
+        console.log('Удалил', obj)
       } else {
         const { data } = await axios.post('https://65a7c5a394c2c5762da7817d.mockapi.io/cart', obj);
         setCartProducts((prev: any) => [...prev, data]);
+        console.log('Добавил', obj)
       }
     } catch (error) {
       alert('Не удалось добавить товар в корзину')
     }
   };
 
-  const isAddedProduct = (id: any) => {
-    return cartProducts.some((obj) => Number(obj.id) === Number(id))
+  const isAddedProduct = (id_prod: any) => {
+    return cartProducts.some((obj) => Number(obj.prod_id) === Number(id_prod))
   }
 
   return (
