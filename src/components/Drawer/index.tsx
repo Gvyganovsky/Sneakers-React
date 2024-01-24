@@ -1,8 +1,11 @@
 import styles from './Drawer.module.scss';
 import CartItem from '../CartItem';
 import Button from '../Button';
+import React from 'react';
+import AppContext from '../../AppContext';
 
-function Drawer({ onCart, onClickCross, setCartProducts, cartProducts }: any) {
+function Drawer({ onCart, onClickCross }: any) {
+    const { cartProducts } = React.useContext(AppContext);
     return (
         <section className={styles.overlay}>
             <div className={styles.drawer}>

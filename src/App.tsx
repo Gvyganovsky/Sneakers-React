@@ -58,6 +58,10 @@ function App() {
     }
   };
 
+  const isAddedProduct = (id: any) => {
+    return cartProducts.some((obj) => Number(obj.id) === Number(id))
+  }
+
   return (
     <AppContext.Provider value={{ products, favorite, cartProducts }}>
       <section className="App" >
@@ -65,9 +69,7 @@ function App() {
           BasketOpen ?
             <Drawer
               setCartProducts={setCartProducts}
-              cartProducts={cartProducts}
               onCart={onCart}
-              products={cartProducts}
               onClickCross={() => setBasketOpened(false)} />
             : null
         }
@@ -78,14 +80,12 @@ function App() {
             path='/'
             element={
               <Home
-                products={products}
                 onFavorite={onFavorite}
                 onCart={onCart}
-                cartProducts={cartProducts}
                 setCartProducts={setCartProducts}
                 setFavorite={setFavorite}
-                favorite={favorite}
                 isLoading={isLoading}
+                isAddedProduct={isAddedProduct}
               />
             }
           />

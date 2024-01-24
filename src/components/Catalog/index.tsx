@@ -1,9 +1,11 @@
 import styles from './Catalog.module.scss';
 import Product from '../Product';
 import React from 'react';
+import AppContext from '../../AppContext'
 
-function Catalog({ onCart, onFavorite, cartProducts, products, favorite, isLoading }: any) {
+function Catalog({ onCart, onFavorite, isLoading, isAddedProduct }: any) {
     const [searchValue, setSearchValue] = React.useState('');
+    const { products, favorite } = React.useContext(AppContext);
 
     const onChangeSearchInput = (event: any) => {
         setSearchValue(event.target.value)
@@ -15,11 +17,11 @@ function Catalog({ onCart, onFavorite, cartProducts, products, favorite, isLoadi
 
         return (isLoading ? [...Array(12)] : filterProducts).map((product: { title: any; id: any; }) => (
             <Product
-                // key={product.title}
+                key={product && product.title}
                 onFavorite={(obj: any) => onFavorite(obj)}
                 onCart={(obj: any) => onCart(obj)}
                 favorited={favorite.some((obj: any) => Number(obj.id) === Number(product.id))}
-                added={cartProducts.some((obj: any) => Number(obj.id) === Number(product.id))}
+                added={isAddedProduct(product && product.id)}
                 isLoading={isLoading}
                 {...product}
             />
