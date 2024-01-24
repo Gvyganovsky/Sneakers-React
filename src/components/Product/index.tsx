@@ -1,13 +1,13 @@
 import styles from './Product.module.scss';
 import React from 'react';
 import ContentLoader from "react-content-loader"
+import AppContext from '../../AppContext';
 
-function Product({ id, img, title, price, onFavorite, onCart, favorited = false, added = false, isLoading }: any) {
-    const [isAdded, setIsAdded] = React.useState(added);
+function Product({ id, img, title, price, onFavorite, onCart, favorited = false, isLoading }: any) {
     const [isFavorite, setIsFavorite] = React.useState(favorited);
+    const { isAddedProduct } = React.useContext(AppContext);
 
     const onBasket = () => {
-        setIsAdded(!isAdded);
         onCart({ id, img, title, price });
     }
 
@@ -56,7 +56,7 @@ function Product({ id, img, title, price, onFavorite, onCart, favorited = false,
                     </h3>
                     <div className={styles.product__priceBlock}>
                         <img
-                            src={isAdded ? '/assets/icons/add.svg' : '/assets/icons/notAdd.svg'}
+                            src={isAddedProduct(id) ? '/assets/icons/add.svg' : '/assets/icons/notAdd.svg'}
                             alt="Add"
                             width={32}
                             height={32}

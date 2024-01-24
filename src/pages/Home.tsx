@@ -2,7 +2,7 @@ import React from 'react';
 import Catalog from '../components/Catalog';
 import Hero from '../components/Hero';
 
-function Home({ cartProducts, setCartProducts, onFavorite, onCart, isLoading, isAddedProduct }: any) {
+function Home({ cartProducts, setCartProducts, onFavorite, onCart, isLoading }: any) {
     return (
         <>
             <Hero />
@@ -12,7 +12,6 @@ function Home({ cartProducts, setCartProducts, onFavorite, onCart, isLoading, is
                 onFavorite={onFavorite}
                 onCart={onCart}
                 isLoading = {isLoading}
-                isAddedProduct={isAddedProduct}
             />
         </>
     );

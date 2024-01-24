@@ -32,7 +32,7 @@ function App() {
 
   const onFavorite = async (obj: any) => {
     try {
-      if (favorite.find((favObj: { id: any; }) => favObj.id === obj.id)) {
+      if (favorite.find((favObj: { id: any; }) => Number(favObj.id) === Number(obj.id))) {
         axios.delete(`https://65aa1b5e081bd82e1d961920.mockapi.io/favorite/${obj.id}`);
         setFavorite((prev: any) => prev.filter((product: { id: any; }) => product.id !== obj.id));
       } else {
@@ -63,7 +63,7 @@ function App() {
   }
 
   return (
-    <AppContext.Provider value={{ products, favorite, cartProducts }}>
+    <AppContext.Provider value={{ products, favorite, cartProducts, isAddedProduct }}>
       <section className="App" >
         {
           BasketOpen ?
@@ -85,7 +85,6 @@ function App() {
                 setCartProducts={setCartProducts}
                 setFavorite={setFavorite}
                 isLoading={isLoading}
-                isAddedProduct={isAddedProduct}
               />
             }
           />

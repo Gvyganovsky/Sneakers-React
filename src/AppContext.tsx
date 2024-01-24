@@ -4,6 +4,7 @@ interface AppContextType {
     favorite: any[];
     products: any[];
     cartProducts: any[];
+    isAddedProduct: any;
 }
 
 const AppContext = React.createContext<AppContextType>({} as AppContextType);
