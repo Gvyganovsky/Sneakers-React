@@ -4,7 +4,8 @@ import styles from './Header.module.scss';
 import { Link } from 'react-router-dom';
 
 function Header() {
-    const { setBasketOpened } = React.useContext(AppContext);
+    const { setBasketOpened, cartProducts } = React.useContext(AppContext);
+    const price = cartProducts.reduce((sum, obj) => obj.price + sum, 0)
 
     return (
         <section className={styles.header}>
@@ -36,7 +37,7 @@ function Header() {
                             className={styles.header__icon}
                         />
                         <p className={styles.header__iconText}>
-                            1205 руб.
+                            {price} руб.
                         </p>
                     </li>
                     <li>

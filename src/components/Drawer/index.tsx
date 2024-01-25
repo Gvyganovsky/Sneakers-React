@@ -11,13 +11,22 @@ function Drawer({ onCart }: any) {
     const [orderId, setOrderId] = React.useState(null);
     const { cartProducts, setBasketOpened, setCartProducts } = React.useContext(AppContext);
 
+    const price = cartProducts.reduce((sum, obj) => obj.price + sum, 0);
+    const  delay = (ms: number | undefined) => new Promise((resolve) => setTimeout(resolve, ms));
+
     const isOrderComplete = async () => {
         try {
-            const { data } = await axios.post('https://65aa1b5e081bd82e1d961920.mockapi.io/order', cartProducts);
-            await axios.put('https://65a7c5a394c2c5762da7817d.mockapi.io/cart', []);
+            const { data } = await axios.post('https://65aa1b5e081bd82e1d961920.mockapi.io/order', { cartProducts });
             setOrderId(data.id);
             setIsOrder(true);
             setCartProducts([]);
+
+            for (let i = 0; i < cartProducts.length; i++) {
+                const item = cartProducts[i];
+                await axios.delete('https://65a7c5a394c2c5762da7817d.mockapi.io/cart/' + item.id);
+                await delay(1000);
+            }
+
         } catch (error) {
             alert('Не удалось создать заказ!')
         }
@@ -46,7 +55,7 @@ function Drawer({ onCart }: any) {
                                     </p>
                                     <div className={styles.gray__line}></div>
                                     <p className={styles.price__textPrice}>
-                                        21 498 руб.
+                                        {price} руб.
                                     </p>
                                 </li>
                                 <li className={styles.price__item}>
@@ -55,7 +64,7 @@ function Drawer({ onCart }: any) {
                                     </p>
                                     <div className={styles.gray__line}></div>
                                     <p className={styles.price__textPrice}>
-                                        1074 руб.
+                                        {Math.round(price / 100 * 5)} руб.
                                     </p>
                                 </li>
                                 <li className={styles.price__item}>
