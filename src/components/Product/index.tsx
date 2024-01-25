@@ -3,16 +3,14 @@ import React from 'react';
 import ContentLoader from "react-content-loader"
 import AppContext from '../../AppContext';
 
-function Product({ id, img, title, price, onFavorite, onCart, favorited = false, isLoading, prod_id=id }: any) {
-    const [isFavorite, setIsFavorite] = React.useState(favorited);
-    const { isAddedProduct } = React.useContext(AppContext);
+function Product({ id, img, title, price, onFavorite, onCart, isLoading, prod_id=id }: any) {
+    const { isAddedProduct, isAddedFavorite } = React.useContext(AppContext);
 
     const onBasket = () => {
         onCart({ id, img, title, price, prod_id });
     }
 
     const Favorite = () => {
-        setIsFavorite(!isFavorite);
         onFavorite({ id, img, title, price });
     }
 
@@ -37,7 +35,7 @@ function Product({ id, img, title, price, onFavorite, onCart, favorited = false,
             ) : (
                 <>
                     <img
-                        src={isFavorite ? '/assets/icons/like.svg' : '/assets/icons/notLike.svg'}
+                        src={isAddedFavorite(id) ? '/assets/icons/like.svg' : '/assets/icons/notLike.svg'}
                         alt="notLike"
                         width={32}
                         height={32}

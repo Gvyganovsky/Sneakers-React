@@ -20,7 +20,7 @@ function App() {
       const cartResponce = await axios.get('https://65a7c5a394c2c5762da7817d.mockapi.io/cart');
       const favoriteResponce = await axios.get('https://65aa1b5e081bd82e1d961920.mockapi.io/favorite');
       const productsResponce = await axios.get('https://65a7c5a394c2c5762da7817d.mockapi.io/products');
-      
+
       setIsLoading(false);
 
       setCartProducts(cartResponce.data);
@@ -64,8 +64,12 @@ function App() {
     return cartProducts.some((obj) => Number(obj.prod_id) === Number(id_prod))
   }
 
+  const isAddedFavorite = (id: any) => {
+    return favorite.some((obj) => Number(obj.id) === Number(id))
+  }
+
   return (
-    <AppContext.Provider value={{ products, favorite, cartProducts, setCartProducts, isAddedProduct, setBasketOpened }}>
+    <AppContext.Provider value={{ products, favorite, cartProducts, setCartProducts, isAddedProduct, setBasketOpened, isAddedFavorite }}>
       <section className="App" >
         {
           BasketOpen ?
