@@ -1,7 +1,11 @@
+import React from 'react';
+import AppContext from '../../AppContext';
 import styles from './Header.module.scss';
 import { Link } from 'react-router-dom';
 
-function Header(props: any) {
+function Header() {
+    const { setBasketOpened } = React.useContext(AppContext);
+
     return (
         <section className={styles.header}>
             <div className={styles.header__container}>
@@ -22,9 +26,8 @@ function Header(props: any) {
                         </p>
                     </Link>
                 </div>
-
                 <ul className={styles.header__list}>
-                    <li className={styles.header__item} onClick={props.onClickBasket}>
+                    <li className={styles.header__item} onClick={() => setBasketOpened(true)}>
                         <img
                             src='/assets/icons/basket.svg'
                             alt="Basket"

@@ -9,18 +9,18 @@ import Favorites from './pages/Favorites';
 import AppContext from './AppContext';
 
 function App() {
-  const [products, setProducts] = React.useState<any[]>([]);
   const [BasketOpen, setBasketOpened] = React.useState(false);
+  const [products, setProducts] = React.useState<any[]>([]);
+  const [isLoading, setIsLoading] = React.useState(true);
   const [favorite, setFavorite] = React.useState<any[]>([]);
   const [cartProducts, setCartProducts] = React.useState<any[]>([]);
-  const [isLoading, setIsLoading] = React.useState(true);
 
   React.useEffect(() => {
     async function fetchData() {
       const cartResponce = await axios.get('https://65a7c5a394c2c5762da7817d.mockapi.io/cart');
       const favoriteResponce = await axios.get('https://65aa1b5e081bd82e1d961920.mockapi.io/favorite');
       const productsResponce = await axios.get('https://65a7c5a394c2c5762da7817d.mockapi.io/products');
-
+      
       setIsLoading(false);
 
       setCartProducts(cartResponce.data);
@@ -63,17 +63,17 @@ function App() {
   }
 
   return (
-    <AppContext.Provider value={{ products, favorite, cartProducts, isAddedProduct }}>
+    <AppContext.Provider value={{ products, favorite, cartProducts, setCartProducts, isAddedProduct, setBasketOpened }}>
       <section className="App" >
         {
           BasketOpen ?
             <Drawer
               setCartProducts={setCartProducts}
               onCart={onCart}
-              onClickCross={() => setBasketOpened(false)} />
+            />
             : null
         }
-        <Header onClickBasket={() => setBasketOpened(true)} />
+        <Header />
 
         <Routes>
           <Route

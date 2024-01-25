@@ -3,13 +3,30 @@ import CartItem from '../CartItem';
 import Button from '../Button';
 import React from 'react';
 import AppContext from '../../AppContext';
+import DrawerInfo from '../DrawerInfo/DrawerInfo';
+import axios from 'axios';
 
-function Drawer({ onCart, onClickCross }: any) {
-    const { cartProducts } = React.useContext(AppContext);
+function Drawer({ onCart }: any) {
+    const [isOrder, setIsOrder] = React.useState(false);
+    const [orderId, setOrderId] = React.useState(null);
+    const { cartProducts, setBasketOpened, setCartProducts } = React.useContext(AppContext);
+
+    const isOrderComplete = async () => {
+        try {
+            const { data } = await axios.post('https://65aa1b5e081bd82e1d961920.mockapi.io/order', cartProducts);
+            await axios.put('https://65a7c5a394c2c5762da7817d.mockapi.io/cart', []);
+            setOrderId(data.id);
+            setIsOrder(true);
+            setCartProducts([]);
+        } catch (error) {
+            alert('Не удалось создать заказ!')
+        }
+    }
+
     return (
         <section className={styles.overlay}>
             <div className={styles.drawer}>
-                <h2 className={`${styles.drawer__title} ${styles.cross}`} onClick={onClickCross}>Корзина</h2>
+                <h2 className={`${styles.drawer__title} ${styles.cross}`} onClick={() => setBasketOpened(false)}>Корзина</h2>
                 {
                     cartProducts.length > 0 ? (
                         <>
@@ -42,27 +59,20 @@ function Drawer({ onCart, onClickCross }: any) {
                                     </p>
                                 </li>
                                 <li className={styles.price__item}>
-                                    <Button text='Оформить заказ' className={styles.price__btn} />
+                                    <Button onClick={isOrderComplete} text='Оформить заказ' className={styles.price__btn} />
                                 </li>
                             </ul>
                         </>
                     ) : (
-                        <div className={styles.nullBasket}>
-                            <img
-                                src="/assets/img/nullBasket.svg"
-                                alt="nullBasket"
-                                width={120}
-                                height={120}
-                                className={styles.nullBasket__img}
-                            />
-                            <p className={styles.nullBasket__title}>
-                                Корзина пустая
-                            </p>
-                            <p className={styles.nullBasket__text}>
-                                Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.
-                            </p>
-                            <Button text='Вернуться назад' className={styles.nullBasket__btn} onClick={onClickCross} />
-                        </div>
+                        <DrawerInfo
+                            title={isOrder ? 'Заказ оформлен!' : 'Корзина пустая'}
+                            description={
+                                isOrder
+                                    ? `Ваш заказ №${orderId} скоро будет передан курьерской доставке`
+                                    : 'Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.'
+                            }
+                            img={isOrder ? '/assets/icons/order.svg' : '/assets/icons/nullBasket.svg'}
+                        />
                     )}
             </div>
         </section >
