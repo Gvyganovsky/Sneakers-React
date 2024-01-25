@@ -7,6 +7,7 @@ import Header from './components/Header';
 import Home from './pages/Home';
 import Favorites from './pages/Favorites';
 import AppContext from './AppContext';
+import Orders from './pages/Orders';
 
 function App() {
   const [BasketOpen, setBasketOpened] = React.useState(false);
@@ -46,9 +47,9 @@ function App() {
 
   const onCart = async (obj: any) => {
     try {
-      if (cartProducts.find((prodObj: { prod_id: any; }) => Number(prodObj.prod_id) === Number(obj.prod_id))) {
+      if (cartProducts.find((prodObj: { id: any; }) => Number(prodObj.id) === Number(obj.id))) {
         axios.delete(`https://65a7c5a394c2c5762da7817d.mockapi.io/cart/${obj.id}`);
-        setCartProducts((prev: any) => prev.filter((prodObj: { prod_id: any; }) => prodObj.prod_id !== obj.prod_id));
+        setCartProducts((prev: any) => prev.filter((prodObj: { id: any; }) => prodObj.id !== obj.id));
         console.log('Удалил', obj)
       } else {
         const { data } = await axios.post('https://65a7c5a394c2c5762da7817d.mockapi.io/cart', obj);
@@ -98,6 +99,15 @@ function App() {
             path='/favorites'
             element={
               <Favorites
+                onCart={onCart}
+                onFavorite={onFavorite}
+              />
+            }
+          />
+           <Route
+            path='/orders'
+            element={
+              <Orders
                 onCart={onCart}
                 onFavorite={onFavorite}
               />

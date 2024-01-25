@@ -12,7 +12,7 @@ function Drawer({ onCart }: any) {
     const { cartProducts, setBasketOpened, setCartProducts } = React.useContext(AppContext);
 
     const price = cartProducts.reduce((sum, obj) => obj.price + sum, 0);
-    const  delay = (ms: number | undefined) => new Promise((resolve) => setTimeout(resolve, ms));
+    const delay = (ms: number | undefined) => new Promise((resolve) => setTimeout(resolve, ms));
 
     const isOrderComplete = async () => {
         try {

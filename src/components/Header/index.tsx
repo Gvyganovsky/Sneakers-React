@@ -54,17 +54,19 @@ function Header() {
                             </p>
                         </Link>
                     </li>
-                    <li className={styles.header__item}>
-                        <img
-                            src='/assets/icons/profile.svg'
-                            alt="Profile"
-                            width={18}
-                            height={18}
-                            className={styles.header__icon}
-                        />
-                        <p className={styles.header__iconText}>
-                            Профиль
-                        </p>
+                    <li>
+                        <Link to='/orders' className={styles.header__item}>
+                            <img
+                                src='/assets/icons/profile.svg'
+                                alt="Profile"
+                                width={18}
+                                height={18}
+                                className={styles.header__icon}
+                            />
+                            <p className={styles.header__iconText}>
+                                Профиль
+                            </p>
+                        </Link>
                     </li>
                 </ul>
             </div>
