@@ -3,9 +3,10 @@ import styles from '../components/Catalog/Catalog.module.scss';
 import Product from "../components/Product";
 import Button from '../components/Button/';
 import AppContext from '../AppContext'
+import { Link } from 'react-router-dom';
 
 function Favorites({ onCart, onFavorite }: any) {
-    const { favorite } = React.useContext(AppContext);
+    const { favorite, isAddedFavorite } = React.useContext(AppContext);
 
     return (
         <section className={styles.catalog}>
@@ -21,7 +22,6 @@ function Favorites({ onCart, onFavorite }: any) {
                                     key={product.id}
                                     onFavorite={() => onFavorite(product)}
                                     onCart={(obj: any) => onCart(obj)}
-                                    favorited={true}
                                     {...product}
                                 />
                             ))}
@@ -41,7 +41,9 @@ function Favorites({ onCart, onFavorite }: any) {
                             <p className={styles.nullFavorite__text}>
                                 Вы ничего не добавляли в закладки
                             </p>
-                            <Button text='Вернуться назад' className={styles.nullFavorite__btn} />
+                            <Link to='/'>
+                                <Button text='Вернуться назад' className={styles.nullFavorite__btn} />
+                            </Link>
                         </div>
                     )
                 }

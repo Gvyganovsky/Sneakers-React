@@ -4,6 +4,7 @@ import Product from "../components/Product";
 import Button from '../components/Button/';
 import AppContext from '../AppContext'
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 function Orders({ onCart, onFavorite }: any) {
     const [order, setOrder] = React.useState([]);
@@ -30,7 +31,6 @@ function Orders({ onCart, onFavorite }: any) {
                                     // key={product.id}
                                     onFavorite={() => onFavorite(product)}
                                     onCart={(obj: any) => onCart(obj)}
-                                    favorited={true}
                                     {...product}
                                 />
                             ))}
@@ -45,12 +45,14 @@ function Orders({ onCart, onFavorite }: any) {
                                 className={styles.nullFavorite__img}
                             />
                             <p className={styles.nullFavorite__title}>
-                                Закладок нет
+                                Заказов нет
                             </p>
                             <p className={styles.nullFavorite__text}>
-                                Вы ничего не добавляли в закладки
+                                Вы ничего не покупали
                             </p>
-                            <Button text='Вернуться назад' className={styles.nullFavorite__btn} />
+                            <Link to='/'>
+                                <Button text='Вернуться назад' className={styles.nullFavorite__btn} />
+                            </Link>
                         </div>
                     )
                 }

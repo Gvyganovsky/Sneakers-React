@@ -33,40 +33,41 @@ function App() {
 
   const onFavorite = async (obj: any) => {
     try {
-      if (favorite.find((favObj: { id: any; }) => Number(favObj.id) === Number(obj.id))) {
-        axios.delete(`https://65aa1b5e081bd82e1d961920.mockapi.io/favorite/${obj.id}`);
-        setFavorite((prev: any) => prev.filter((product: { id: any; }) => product.id !== obj.id));
+      const existingProduct = favorite.find((prodObj: { prod_id: any; }) => Number(prodObj.prod_id) === Number(obj.prod_id));
+      if (existingProduct) {
+        await axios.delete(`https://65aa1b5e081bd82e1d961920.mockapi.io/favorite/${existingProduct.id}`);
+        setFavorite((prev: any) => prev.filter((prodObj: { prod_id: any; }) => prodObj.prod_id !== obj.prod_id));
       } else {
         const { data } = await axios.post('https://65aa1b5e081bd82e1d961920.mockapi.io/favorite', obj);
         setFavorite((prev: any) => [...prev, data]);
       }
     } catch (error) {
-      alert('Не удалось добавить в закладки')
-    }
-  }
-
-  const onCart = async (obj: any) => {
-    try {
-      if (cartProducts.find((prodObj: { id: any; }) => Number(prodObj.id) === Number(obj.id))) {
-        axios.delete(`https://65a7c5a394c2c5762da7817d.mockapi.io/cart/${obj.id}`);
-        setCartProducts((prev: any) => prev.filter((prodObj: { id: any; }) => prodObj.id !== obj.id));
-        console.log('Удалил', obj)
-      } else {
-        const { data } = await axios.post('https://65a7c5a394c2c5762da7817d.mockapi.io/cart', obj);
-        setCartProducts((prev: any) => [...prev, data]);
-        console.log('Добавил', obj)
-      }
-    } catch (error) {
-      alert('Не удалось добавить товар в корзину')
+      alert('Не удалось добавить товар в корзину');
     }
   };
 
-  const isAddedProduct = (id_prod: any) => {
-    return cartProducts.some((obj) => Number(obj.prod_id) === Number(id_prod))
+  const onCart = async (obj: any) => {
+    try {
+      const existingProduct = cartProducts.find((prodObj: { prod_id: any; }) => Number(prodObj.prod_id) === Number(obj.prod_id));
+      if (existingProduct) {
+        await axios.delete(`https://65a7c5a394c2c5762da7817d.mockapi.io/cart/${existingProduct.id}`);
+        setCartProducts((prev: any) => prev.filter((prodObj: { prod_id: any; }) => prodObj.prod_id !== obj.prod_id));
+      } else {
+        const { data } = await axios.post('https://65a7c5a394c2c5762da7817d.mockapi.io/cart', obj);
+        setCartProducts((prev: any) => [...prev, data]);
+      }
+    } catch (error) {
+
+      alert('Не удалось добавить товар в корзину');
+    }
+  };
+
+  const isAddedProduct = (id: any) => {
+    return cartProducts.find((prodObj: { prod_id: any; }) => Number(prodObj.prod_id) === Number(id));
   }
 
   const isAddedFavorite = (id: any) => {
-    return favorite.some((obj) => Number(obj.id) === Number(id))
+    return favorite.find((prodObj: { prod_id: any; }) => Number(prodObj.prod_id) === Number(id));
   }
 
   return (
@@ -104,7 +105,7 @@ function App() {
               />
             }
           />
-           <Route
+          <Route
             path='/orders'
             element={
               <Orders

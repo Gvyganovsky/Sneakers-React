@@ -1,6 +1,6 @@
 import styles from './CartItem.module.scss';
 
-function CartItem({ id, img, title, price, onCart, prod_id }: any) {
+function CartItem({ id, img, title, price, onCart, prod_id=id }: any) {
     const onBasket = () => {
         onCart({ id, img, title, price, prod_id });
     }

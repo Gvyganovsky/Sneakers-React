@@ -11,7 +11,7 @@ function Product({ id, img, title, price, onFavorite, onCart, isLoading, prod_id
     }
 
     const Favorite = () => {
-        onFavorite({ id, img, title, price });
+        onFavorite({ id, img, title, price, prod_id });
     }
 
     return (
@@ -35,7 +35,7 @@ function Product({ id, img, title, price, onFavorite, onCart, isLoading, prod_id
             ) : (
                 <>
                     <img
-                        src={isAddedFavorite(id) ? '/assets/icons/like.svg' : '/assets/icons/notLike.svg'}
+                        src={isAddedFavorite(prod_id) ? '/assets/icons/like.svg' : '/assets/icons/notLike.svg'}
                         alt="notLike"
                         width={32}
                         height={32}
@@ -54,7 +54,7 @@ function Product({ id, img, title, price, onFavorite, onCart, isLoading, prod_id
                     </h3>
                     <div className={styles.product__priceBlock}>
                         <img
-                            src={isAddedProduct(prod_id) ? '/assets/icons/add.svg' : '/assets/icons/notAdd.svg'}
+                            src={isAddedProduct(id) ? '/assets/icons/add.svg' : '/assets/icons/notAdd.svg'}
                             alt="Add"
                             width={32}
                             height={32}
