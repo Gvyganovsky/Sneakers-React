@@ -1,6 +1,6 @@
 # Проект React
 
-![React Sneakers](/assets/img/hero.png)
+![React Sneakers](public/assets/img/hero.png)
 
 Этот проект создан с использованием React. Он представляет собой [описание проекта].
 
