@@ -26,4 +26,4 @@ Sneakers-React разработан с использованием React, дл�
 - Axios
 
 ## Демо
-sneakers-react-liart.vercel.app
+[sneakers-react-liart.vercel.app]
