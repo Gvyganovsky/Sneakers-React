@@ -17,6 +17,9 @@ function App() {
   const [cartProducts, setCartProducts] = React.useState<any[]>([]);
 
   React.useEffect(() => {
+    if (BasketOpen) document.body.style.overflow = 'hidden';
+    else document.body.style.overflow = 'auto';
+
     async function fetchData() {
       const cartResponce = await axios.get('https://65a7c5a394c2c5762da7817d.mockapi.io/cart');
       const favoriteResponce = await axios.get('https://65aa1b5e081bd82e1d961920.mockapi.io/favorite');
@@ -29,7 +32,7 @@ function App() {
       setProducts(productsResponce.data);
     }
     fetchData();
-  }, []);
+  }, [BasketOpen]);
 
   const onFavorite = async (obj: any) => {
     try {

@@ -79,3 +79,9 @@
     background-position: 285px;
     background-repeat: no-repeat;
 }
+
+@media (max-width: 400px) {
+    .drawer {
+        width: 100%;
+    }
+}

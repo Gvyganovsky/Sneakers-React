@@ -79,3 +79,26 @@
     background-repeat: no-repeat;
     margin-bottom: 120px;
 }
+
+@media (max-width: 1050px) {
+    .catalog__content {
+        justify-content: space-evenly;
+    }
+}
+
+@media (max-width: 550px) {
+    .catalog__content {
+        justify-content: center;
+    }
+
+    .search__block { 
+        float: none;
+        margin: 0 auto;
+        margin-top: 12px;
+    }
+
+    .catalog__title {
+        display: block;
+        text-align: center;
+    }
+}

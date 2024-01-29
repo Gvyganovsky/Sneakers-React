@@ -62,3 +62,28 @@
     font-size: 14px;
     font-weight: 400;
 }
+
+@media  (max-width: 740px) {
+    .header__iconText {
+        display: none;
+    }
+}
+
+@media  (max-width: 600px) {
+    .header__container {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .header__list {
+        margin-top: 24px;
+    }
+
+    .header__text {
+        font-size: 12px;
+    }
+
+    .header__item {
+        margin: 0 24px;
+    }
+}
